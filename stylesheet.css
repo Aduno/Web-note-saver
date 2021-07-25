@@ -1,0 +1,100 @@
+body {
+  background-color: rgb(65, 65, 65);
+  width: 450px;
+  height: 230px;
+}
+
+input {
+  border-radius: 10%;
+}
+p {
+  margin: 1% 0 0 0;
+  padding-bottom: 1px;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+li {
+  text-align: left;
+}
+
+.logo-icon {
+  display: inline-block;
+  align-self: left;
+  vertical-align: middle;
+  height: 30px;
+  width: 30px;
+}
+
+.header-description {
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.header-description h2 {
+  color: #5d71c9;
+  margin: 0;
+  padding-left: 2px;
+}
+
+#settings:hover {
+  /* opacity: 1; */
+  filter: invert(100%);
+}
+#git:hover {
+  filter: invert(100%);
+}
+
+main {
+  border-top: black;
+  border-style: solid;
+  border-width: 1px;
+  margin-top: 2px;
+}
+
+#main-view {
+  float: left;
+  width: 70%;
+}
+
+#main-info {
+  color: whitesmoke;
+  max-width: 500px;
+  word-wrap: break-word;
+}
+
+textarea {
+  background-color: #19192e;
+  border-radius: 1px;
+  border-style: solid;
+  border-color: beige;
+  border-radius: 4px;
+  display: block;
+  height: 100px;
+  margin: 5px 0 5px 0;
+  width: 98%;
+  color: rgba(158, 158, 158, 0.7);
+}
+
+textarea:focus {
+  color: white;
+}
+
+#main-options {
+  min-height: 28px;
+}
+
+#tabs {
+  float: right;
+  text-align: center;
+  width: 30%;
+}
+#tabs h2 {
+  margin: 0;
+}
+.stickRight {
+  float: right;
+}
+.stickLeft {
+  float: left;
+}
