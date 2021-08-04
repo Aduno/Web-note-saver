@@ -137,7 +137,6 @@ function removeComment(){
                 index =increment; 
                 let key = "website"+increment; 
                 chrome.storage.sync.remove(key,success=>{
-                    console.log("success")
                     updateTabs();
                 });
             }
