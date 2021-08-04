@@ -16,7 +16,7 @@ p {
 
 li {
   text-align: left;
-  color:rgb(200, 200, 200);
+  color:rgb(230, 230, 230);
 }
 
 ul{
@@ -25,7 +25,7 @@ ul{
 }
 
 a{
-  color: rgb(200, 200, 200);
+  color: rgb(230, 230, 230);
 }
 .logo-icon {
   display: inline-block;

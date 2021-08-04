@@ -3,7 +3,7 @@ import Tabs from "./Tabs.js";
 var i = 0;
 var myTab = new Tabs();
 var deleted;
-var CHAR_PER_TAB = 120;
+var CHAR_PER_TAB = 186;
 
 function updateMainInfo(saved){
     //Gets the current tab information (title,url)
@@ -45,7 +45,7 @@ function updateTabs(){
             currentChar+=webTitle.length;
             console.log(currentChar)
             console.log(webTitle.length)
-            if(currentChar>186){
+            if(currentChar>CHAR_PER_TAB){
                 newPage();
             }
             var ul = document.querySelector("#savedURLS");
