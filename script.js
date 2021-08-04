@@ -2,9 +2,8 @@ import Tabs from "./Tabs.js";
 
 var i = 0;
 var myTab = new Tabs();
-var deleted;
-var CHAR_PER_TAB = 186;
 
+//Updates the main-info frame containing the title,url, and textarea
 function updateMainInfo(saved){
     //Gets the current tab information (title,url)
     if(typeof saved=="undefined"){
@@ -34,19 +33,15 @@ function updateMainInfo(saved){
 //Updates the side tabs with items from the storage
 function updateTabs(){
     let webTitle;
-    let currentChar=0;
+    //Clears any previous items in the ul before updating
+    document.querySelectorAll("#savedURLS li").forEach(elem=>elem.remove())
+    
     chrome.storage.sync.get(null, item =>{
         for (let x of Object.values(item)){
             webTitle = x[0]; //gets the title of page
             //Cuts the length of title if it exceeds 60 chars
             if(webTitle.length>60){
                 webTitle = webTitle.substring(0,59)+"...";
-            }
-            currentChar+=webTitle.length;
-            console.log(currentChar)
-            console.log(webTitle.length)
-            if(currentChar>CHAR_PER_TAB){
-                newPage();
             }
             var ul = document.querySelector("#savedURLS");
             var li = document.createElement("li");
@@ -60,10 +55,6 @@ function updateTabs(){
             ul.appendChild(li);
         }
     });
-}
-//Creates a multipage ul list that can be navigated with buttons
-function newPage(){
-
 }
 
 //Gets the number of items in storage
@@ -137,7 +128,23 @@ function searchInStorage(title){
 }
 
 function removeComment(){
-
+    let increment =0;
+    let index=0;
+    chrome.storage.sync.get(null, item=>{
+        for(let title of Object.values(item)){
+            //If it finds saved data, only the comment is updated
+            if(title[0]==myTab.title){
+                index =increment; 
+                let key = "website"+increment; 
+                chrome.storage.sync.remove(key,success=>{
+                    console.log("success")
+                    updateTabs();
+                });
+            }
+            increment++;
+            
+        }
+    })
 }
 
 function addEventListener(){
@@ -146,10 +153,9 @@ function addEventListener(){
         updateMainInfo();
     });
 
-    // document.querySelector("#delete").addEventListener("click",function(){
-    //     removeComment();
-    //     updateStorage();
-    // });
+    document.querySelector("#delete").addEventListener("click",function(){
+        removeComment();
+    });
 }
 
 addEventListener();

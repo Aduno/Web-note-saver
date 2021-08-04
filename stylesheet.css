@@ -1,37 +1,60 @@
 body {
+  font-family: 'Itim', cursive;
   background-color: rgb(65, 65, 65);
-  width: 500px;
   height: 230px;
+  width: 500px;
 }
 
 input {
   border-radius: 10%;
 }
 p {
+  font-size:small;
+  font-weight: 500;
   margin: 1% 0 0 0;
   padding-bottom: 1px;
   text-decoration: underline;
-  font-weight: 500;
-}
-
-li {
-  text-align: left;
-  color:rgb(230, 230, 230);
 }
 
 ul{
+  font-size:small;
   margin-top:0;
+  max-height: 180px; 
+  overflow: hidden;
+  overflow-y:scroll;
   padding-left:15%;
+}
+
+li {
+  color:rgb(230, 230, 230);
+  text-align: left;
+}
+
+::-webkit-scrollbar{
+  width:7px;
+}
+::-webkit-scrollbar-track{
+  background: rgb(65, 65, 65);
+}
+::-webkit-scrollbar-thumb{
+  background: rgb(160, 160, 160);
+}
+::-webkit-scrollbar-thumb:hover{
+  background:white;
 }
 
 a{
   color: rgb(230, 230, 230);
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: underline;
 }
 .logo-icon {
-  display: inline-block;
   align-self: left;
-  vertical-align: middle;
+  display: inline-block;
   height: 30px;
+  vertical-align: middle;
   width: 30px;
 }
 
@@ -41,13 +64,12 @@ a{
 }
 
 .header-description h2 {
-  color: #5d71c9;
+  color: #1da8f8;
   margin: 0;
   padding-left: 2px;
 }
 
 #settings:hover {
-  /* opacity: 1; */
   filter: invert(100%);
 }
 #git:hover {
@@ -78,11 +100,11 @@ textarea {
   border-style: solid;
   border-color: beige;
   border-radius: 4px;
+  color: rgba(158, 158, 158, 0.7);
   display: block;
   height: 100px;
   margin: 5px 0 5px 0;
   width: 98%;
-  color: rgba(158, 158, 158, 0.7);
 }
 
 textarea:focus {
@@ -99,6 +121,7 @@ textarea:focus {
   width: 30%;
 }
 #tabs h2 {
+  color:#1da8f8;
   margin: 0;
 }
 
