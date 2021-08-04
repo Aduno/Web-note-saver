@@ -3,7 +3,7 @@ import Tabs from "./Tabs.js";
 var i = 0;
 var myTab = new Tabs();
 var deleted;
-
+var CHAR_PER_TAB = 120;
 
 function updateMainInfo(saved){
     //Gets the current tab information (title,url)
@@ -34,17 +34,39 @@ function updateMainInfo(saved){
 //Updates the side tabs with items from the storage
 function updateTabs(){
     let webTitle;
+    let currentChar=0;
     chrome.storage.sync.get(null, item =>{
         for (let x of Object.values(item)){
             webTitle = x[0]; //gets the title of page
+            //Cuts the length of title if it exceeds 60 chars
+            if(webTitle.length>60){
+                webTitle = webTitle.substring(0,59)+"...";
+            }
+            currentChar+=webTitle.length;
+            console.log(currentChar)
+            console.log(webTitle.length)
+            if(currentChar>186){
+                newPage();
+            }
             var ul = document.querySelector("#savedURLS");
             var li = document.createElement("li");
-            li.appendChild(document.createTextNode(webTitle));
+            var aTag = document.createElement("a");
+            aTag.href = x[1];//[1] --contains the URL of the tab
+            aTag.target = "_blank";
+            aTag.setAttribute("id","saved")
+            aTag.appendChild(document.createTextNode(webTitle));
+
+            li.appendChild(aTag)
             ul.appendChild(li);
         }
     });
 }
+//Creates a multipage ul list that can be navigated with buttons
+function newPage(){
 
+}
+
+//Gets the number of items in storage
 function count(callback){
     chrome.storage.sync.get(null,function(elem){
         i =0;
@@ -55,28 +77,24 @@ function count(callback){
     });
 }
 
+// Adds/edits the tab information and comments
 function addToStorage(index){
     if(typeof index=="undefined"){
         myTab.comment = document.querySelector('textarea').value;
         //Change this so that it finds the index of the item in the storage and changes only the comment
         let site = String("website"+i);
         chrome.storage.sync.set({[site]: [myTab.title,myTab.url,myTab.comment]})
-        chrome.storage.sync.get(null,item=>{
-            console.log(item);
-        })
     }else{
         myTab.comment = document.querySelector('textarea').value;
         let site = String("website"+index);
         chrome.storage.sync.set({[site]: [myTab.title,myTab.url,myTab.comment]})
-        chrome.storage.sync.get(null,item=>{
-            console.log(item);
-        })
     }
 }
 
+//Called when the save button is clicked. This function chooses to either save or edit the information into storage
+// depending on whehter there was prior data saved
 function saveComment(){
     let found = false;
-    
     chrome.storage.sync.get(null,function(item){
         let index = 0;
         let indexSaved; //Static variable used to store the index position where the identical item is stored
@@ -98,24 +116,26 @@ function saveComment(){
         if(!found){
             count(value =>{
                 i = value;
-                console.log(i)
                 addToStorage();
+                updateTabs();
             })
         }
     });
 }
+
+//Searches if the current tab has information stored and if so, updates the textarea with the saved data
 function searchInStorage(title){
     chrome.storage.sync.get(null,function(item){
         //Checks if the object already exists in the list 
         for(let title of Object.values(item)){
             //If it finds saved data, the textarea is updated
             if(title[0]==myTab.title){
-                console.log(title[0]);
                 updateMainInfo(title);
             }
         }
     });
 }
+
 function removeComment(){
 
 }
@@ -134,3 +154,4 @@ function addEventListener(){
 
 addEventListener();
 updateMainInfo();
+updateTabs();

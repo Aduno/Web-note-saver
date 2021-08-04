@@ -1,6 +1,6 @@
 body {
   background-color: rgb(65, 65, 65);
-  width: 450px;
+  width: 500px;
   height: 230px;
 }
 
@@ -16,8 +16,17 @@ p {
 
 li {
   text-align: left;
+  color:rgb(200, 200, 200);
 }
 
+ul{
+  margin-top:0;
+  padding-left:15%;
+}
+
+a{
+  color: rgb(200, 200, 200);
+}
 .logo-icon {
   display: inline-block;
   align-self: left;
@@ -91,6 +100,10 @@ textarea:focus {
 }
 #tabs h2 {
   margin: 0;
+}
+
+#saved{
+  text-align: left;
 }
 .stickRight {
   float: right;
