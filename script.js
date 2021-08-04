@@ -73,11 +73,11 @@ function addToStorage(index){
     if(typeof index=="undefined"){
         myTab.comment = document.querySelector('textarea').value;
         //Change this so that it finds the index of the item in the storage and changes only the comment
-        let site = String("website"+i);
+        let site = i;
         chrome.storage.sync.set({[site]: [myTab.title,myTab.url,myTab.comment]})
     }else{
         myTab.comment = document.querySelector('textarea').value;
-        let site = String("website"+index);
+        let site = index;
         chrome.storage.sync.set({[site]: [myTab.title,myTab.url,myTab.comment]})
     }
 }
@@ -135,7 +135,7 @@ function removeComment(){
             //If it finds saved data, only the comment is updated
             if(title[0]==myTab.title){
                 index =increment; 
-                let key = "website"+increment; 
+                let key = String(index); 
                 chrome.storage.sync.remove(key,success=>{
                     updateTabs();
                 });
