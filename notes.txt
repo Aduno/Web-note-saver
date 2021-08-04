@@ -1,7 +1,0 @@
-Add export button
-Fix getting saved tabs 
-add functionality to the li tabs 
-update the main-info according to the clicked item
-
-
-Open and parse json files
